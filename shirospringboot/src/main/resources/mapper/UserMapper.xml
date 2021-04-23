@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gjw.shirospringboot.dao.UserDao">
+
+
+    <insert id="save" keyProperty="id" useGeneratedKeys="true">
+        insert into user values (#{user.id},#{user.username},#{user.password},#{user.salt})
+    </insert>
+
+    <select id="getPasswordByUserName" resultType="string" parameterType="string">
+        select password from user where username=#{username}
+    </select>
+    <select id="getSaltByUserName" resultType="string" parameterType="string">
+        select salt from user where username=#{username};
+    </select>
+    <select id="countUserName" resultType="int" parameterType="string">
+        select count(1) from user where username=#{username}
+    </select>
+</mapper>
